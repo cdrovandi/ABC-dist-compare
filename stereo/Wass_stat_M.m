@@ -1,4 +1,5 @@
 function [out] =Wass_stat_M(vec1,vec2,power)
+% computes Wasserstein distance
 n1 = length(vec1);
 n2 = length(vec2);
 n = n1+n2;

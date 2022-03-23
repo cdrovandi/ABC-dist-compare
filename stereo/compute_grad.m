@@ -1,4 +1,5 @@
 function the_grad = compute_grad(theta,y,obj,numComp)
+% compute summary statistics for g-and-k example (scores of auxuliary mixture model)
     w = theta(1:(numComp-1));
     w(numComp) = 1-sum(theta(1:(numComp-1)));
     mu = theta(numComp:(2*numComp-1));

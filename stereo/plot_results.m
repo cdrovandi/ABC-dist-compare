@@ -1,3 +1,4 @@
+% plot results for summary statistic approaches (using Wasserstein dist as a reference)
 
 %% real data
 

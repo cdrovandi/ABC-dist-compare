@@ -1,4 +1,5 @@
 
+% code to obtain the hyperparameters of the distance function involving the Wass distance
 
 %load('data/data_stereo_synthetic.mat'); % uncomment for simulated data
 load('data/data_stereo_real.mat'); % uncomment for real data

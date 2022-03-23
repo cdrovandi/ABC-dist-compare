@@ -1,4 +1,5 @@
 
+% bivariate posterior plots
 
 %% simulated data
 

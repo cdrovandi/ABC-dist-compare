@@ -1,4 +1,5 @@
 function [theta,loglike] = bayes_stereo_kde(y,M,n,cov_rw,prior)
+% approximate inference using KDE method
 
 theta_curr = [100 2 -0.1];
 

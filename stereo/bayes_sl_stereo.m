@@ -1,4 +1,5 @@
 function [theta,loglike] = bayes_sl_stereo(y,M,n,cov_rw,prior)
+% BSL using auxiliary summary statistics
 
 numComp = 3;
 obj = gmdistribution.fit(y,numComp,'Replicates',100,'Options',statset('MaxIter',10000,'TolFun',1e-10));
@@ -50,7 +51,7 @@ for i = 1:M
     end
     
     if (any(any(isinf(ssx))) || any(any(ssx) == 0) == 1 || any(any(isnan(ssx))))
-        fprintf('!!! dodgy sim !!!\n');
+        fprintf('poor simulation - reject\n');
         theta(i,:) = theta_curr;
         loglike(i) = loglike_ind_curr;
         continue;
@@ -67,9 +68,6 @@ for i = 1:M
     end
     
     loglike_ind_prop =  -0.5*(2*sum(log(diag(R))))-0.5*(the_mean-ssy)/the_cov*(the_mean-ssy)';
-    %if (~isreal(loglike_ind_prop))
-    %    fprintf('stop here\n');
-    %end
     
     
     if (exp(loglike_ind_prop - loglike_ind_curr + log_prior_prop - log_prior_curr) > rand)

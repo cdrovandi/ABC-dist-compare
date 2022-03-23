@@ -1,4 +1,5 @@
 function [theta, dist] = bayes_stereo_abc_4stats(y,n,tol,M,cov_rw,prior,w)
+% ABC using 4 summary statistics
 
 y = y';
 ssy = summary_statistic_stereo_sltest(y,1)';

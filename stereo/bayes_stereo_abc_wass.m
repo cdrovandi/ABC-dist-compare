@@ -1,9 +1,9 @@
 function [theta, dist] = bayes_stereo_abc_wass(y,n,tol,M,cov_rw,prior,w1,w2)
+% ABC using Wasserstein distance
 
 theta = zeros(M,3);
 dist = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f([100 2 -0.1]);
 dist_curr = tol;
 

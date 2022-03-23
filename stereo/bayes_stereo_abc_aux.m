@@ -1,4 +1,5 @@
 function [theta, dist] = bayes_stereo_abc_aux(y,n,tol,M,cov_rw,prior,w1,w2)
+% ABC using auxiliary summary statistics
 
 numComp = 3;
 obj = gmdistribution.fit(y,numComp,'Replicates',100,'Options',statset('MaxIter',10000,'TolFun',1e-10));

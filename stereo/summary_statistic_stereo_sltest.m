@@ -1,4 +1,5 @@
 function ss = summary_statistic_stereo_sltest(y,useLog)
+% compute the 4 summary statistics
 
 if nargin < 2
     useLog = 0;

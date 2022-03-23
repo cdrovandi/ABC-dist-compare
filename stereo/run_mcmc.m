@@ -1,4 +1,5 @@
 
+% run the methods on real data
 
 %% ABC CvM
 
@@ -145,65 +146,6 @@ save('results_mcmc_4stats.mat','theta','dist');
 
 
 
-%% ABC quantiles
-
-load('data/data_stereo_real.mat');
-n = length(y);
-
-% define prior
-prior.num_params = 3;
-prior.p1 = [60 0 -3];
-prior.p2 = [130 10 3];
-prior.sampler = @() [unifrnd(prior.p1,prior.p2)]; 
-prior.pdf = @(theta) prod(exp(theta)./(1 + exp(theta)).^2);
-prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
-prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
-
-load('abc_tol_quantiles.mat')
-
-% TUNED
-cov_rw = [2.63388565201659,-0.561211629567490,0.167804473668226;-0.561211629567490,0.282550178333155,-0.0995555414804843;0.167804473668226,-0.0995555414804843,0.0388688118887866];
-M = 5e7;
-
-[theta, dist] = bayes_stereo_abc_quantiles(y,n,eps,M,cov_rw,prior,w);
-
-save('results_mcmc_quantiles.mat','theta','dist');
-
-
-
-
-
-
-
-%% BSL  quantile summaries
-
-load('data/data_stereo_real.mat');
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%% BSL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-n = 500;
-M = 100000;
-
-fn_summStat = @(x) summStat_stereo_112(x);
-
-% TUNED
-cov_rw = [0.806912542956570	-0.219767579011272	0.0570096496144597;...
--0.219767579011272	0.0986923930086253	-0.0279738526389412;...
-0.0570096496144597	-0.0279738526389412	0.00901713288324701];
-
-% define prior
-prior.num_params = 3;
-prior.p1 = [60 0 -3];
-prior.p2 = [130 10 3];
-prior.sampler = @() [unifrnd(prior.p1,prior.p2)]; 
-prior.pdf = @(theta) prod(exp(theta)./(1 + exp(theta)).^2);
-prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
-prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
-
-[theta, loglike] = bayes_sl_vanilla_stereo(y,M,n,cov_rw,fn_summStat,prior);
-
-save('results_mcmc_bsl.mat','theta','loglike');
-
 
 
 %% BSL  auxiliary summaries
@@ -261,33 +203,6 @@ prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))
 [theta, loglike] = bayes_stereo_kde(y,M,n,cov_rw,prior);
 
 save('results_mcmc_kde.mat','theta','loglike');
-
-
-
-%% KDE n = 500
-
-load('data/data_stereo_real.mat');
-
-n = 500;
-M = 50000;
-
-fn_summStat = @(x) summStat_stereo_112(x);
-
-% TUNED
-cov_rw = [2.54933372632096,-0.0642754885043082,0.00979786562268245;-0.0642754885043082,0.0742258110480567,-0.0179804227398415;0.00979786562268245,-0.0179804227398415,0.00517293287034084];
-
-% define prior
-prior.num_params = 3;
-prior.p1 = [60 0 -3];
-prior.p2 = [130 10 3];
-prior.sampler = @() [unifrnd(prior.p1,prior.p2)]; 
-prior.pdf = @(theta) prod(exp(theta)./(1 + exp(theta)).^2);
-prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
-prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
-
-[theta, loglike] = bayes_stereo_kde(y,M,n,cov_rw,prior);
-
-save('results_mcmc_kde500.mat','theta','loglike');
 
 
 
