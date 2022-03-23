@@ -1,0 +1,25 @@
+MEX {
+	global:
+		mexFunction;
+		mexfilerequiredapiversion;
+		emlrtMexFcnProperties;
+		esim;
+		emxEnsureCapacity_boolean_T;
+		emxEnsureCapacity_creal_T;
+		emxEnsureCapacity_creal_T1;
+		emxEnsureCapacity_real_T;
+		emxEnsureCapacity_real_T1;
+		emxFree_boolean_T;
+		emxFree_creal_T;
+		emxFree_real_T;
+		emxInit_boolean_T;
+		emxInit_creal_T;
+		emxInit_creal_T1;
+		emxInit_real_T;
+		emxInit_real_T1;
+		esim_initialize;
+		esim_terminate;
+		esim_atexit;
+	local:
+		*;
+};

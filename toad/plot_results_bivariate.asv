@@ -1,0 +1,30 @@
+
+
+lower = [1.4 30 0.5];
+upper = [1.9 40 0.7];
+
+load('results_mcmc_simulated_cvm.mat')
+theta = theta(1:50:end,:);
+
+[kx,ky] = ksdensity(theta(:,1:2));
+Z = reshape(kx,[30,30]);
+X = unique(ky(:,1));
+Y = unique(ky(:,2));
+
+contour(X,Y,Z,'LineWidth',1.5,'ShowText','Off','LineColor','k');
+
+
+
+figure;
+subaxis('MT',0.06,'MB',0.1,'ML',0.06,'MR',0.02,'PL',0.01,'PR',0.01,'Pt',0.02,'PB',0.05);
+
+
+subaxis(1,3,1);
+
+[kx,ky] = ksdensity(theta_exact);
+Z = reshape(kx,[30,30]);
+X = unique(ky(:,1));
+Y = unique(ky(:,2));
+
+contour(X,Y,Z,'LineWidth',1.5,'ShowText','Off','LineColor','k');
+
