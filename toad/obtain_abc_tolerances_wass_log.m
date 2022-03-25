@@ -1,6 +1,6 @@
 
 
-
+% code to obtain hyperparameters of ABC discrepancy function based on Wass distance (for log transform of data)
 
 load('data_toads_model1.mat') % uncomment for simulated data
 %load('radio_converted.mat'); % uncomment for real data

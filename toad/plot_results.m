@@ -1,4 +1,6 @@
 
+% plot of marginal posteriors for summary statistic based approaches (including CvM distance as a reference)
+
 %% real data
 
 load('results_mcmc_real_cvm.mat')

@@ -1,4 +1,5 @@
 function [theta,loglike] = bayes_sl_vanilla_toad(Y,simArgs,sumArgs,M,n,cov_rw,prior)
+% BSL using summary statistics for toad example
 
 nan_pos = isnan(Y);
 

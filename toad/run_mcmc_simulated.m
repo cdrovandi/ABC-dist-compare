@@ -1,4 +1,5 @@
 
+% code for running methods on simulated data
 
 %% abc cvm
 
@@ -151,39 +152,6 @@ save('results_mcmc_simulated_quantiles.mat','theta','dist');
 
 
 
-%% abc auxiliary summaries
-
-
-load('data_toads_model1.mat')
-lag = [1, 2, 4, 8];
-
-
-simArgs = struct('ntoads',ntoads,'ndays',ndays,'model',1,'d0',NaN);
-sumArgs = struct('lag',lag);
-
-
-% define prior
-prior.num_params = 3;
-prior.p1 = [1 0 0];
-prior.p2 = [2 100 0.9];
-prior.sampler = @() [unifrnd(prior.p1,prior.p2)]; 
-prior.pdf = @(theta) prod(exp(theta)./(1 + exp(theta)).^2);
-prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
-prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
-
-M = 1e7; 
-
-% TUNED
-cov_rw = [0.136853606617024,0.0154368754740582,0.00226930433776421;0.0154368754740582,0.00707118277816869,0.00171483167430105;0.00226930433776421,0.00171483167430105,0.00814328372741746];
-
-load('abc_tol_simulated_aux.mat')
-
-
-[theta, dist] = bayes_toad_abc_aux(Y,simArgs,sumArgs,eps,M,cov_rw,prior,w);
-
-save('results_mcmc_simulated_aux.mat','theta','dist');
-
-
 %% BSL 
 
 
@@ -214,84 +182,6 @@ cov_rw = [0.0723577127261181,0.00810822745180408,-0.00176930774868591;0.00810822
 [theta,loglike] = bayes_sl_vanilla_toad(Y,simArgs,sumArgs,M,n,cov_rw,prior);
 
 save('results_mcmc_simulated_bsl.mat','theta','loglike');
-
-
-
-
-%% KDE 
-
-
-
-load('data_toads_model1.mat')
-lag = [1, 2, 4, 8];
-
-%y = summStat_noret(Y,lag);
-
-simArgs = struct('ntoads',ntoads,'ndays',ndays,'model',1,'d0',NaN);
-sumArgs = struct('lag',lag);
-
-% define prior
-prior.num_params = 3;
-prior.p1 = [1 0 0];
-prior.p2 = [2 100 0.9];
-prior.sampler = @() [unifrnd(prior.p1,prior.p2)]; 
-prior.pdf = @(theta) prod(exp(theta)./(1 + exp(theta)).^2);
-prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
-prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
-
-M = 1e4;
-n = 500;
-
-% NOT TUNED
-cov_rw = [0.130241491063229,0.0158187820639640,0.00161021604472211;0.0158187820639640,0.00615095902243446,0.00179305564442133;0.00161021604472211,0.00179305564442133,0.00660668716241171];
-
-[theta,loglike] = bayes_toad_kde(Y,simArgs,sumArgs,M,n,cov_rw,prior);
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% BSL  - auxiliary summaries
-
-
-
-load('data_toads_model1.mat')
-lag = [1, 2, 4, 8];
-
-%y = summStat_quantiles3(Y,lag);
-
-simArgs = struct('ntoads',ntoads,'ndays',ndays,'model',1,'d0',NaN);
-sumArgs = struct('lag',lag);
-
-% define prior
-prior.num_params = 3;
-prior.p1 = [1 0 0];
-prior.p2 = [2 100 0.9];
-prior.sampler = @() [unifrnd(prior.p1,prior.p2)]; 
-prior.pdf = @(theta) prod(exp(theta)./(1 + exp(theta)).^2);
-prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
-prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
-
-M = 1e4;
-n = 500;
-
-% NOT TUNED
-cov_rw = [0.0920794067744887,0.00684943908897195,0.00192715699495489;0.00684943908897195,0.00305231431629487,0.000409759957320244;0.00192715699495489,0.000409759957320244,0.00398588505648624];
-
-[theta,loglike] = bayes_sl_vanilla_toad_aux(Y,simArgs,sumArgs,M,n,cov_rw,prior);
-
-save('results_mcmc_simulated_bsl.mat','theta','loglike');
-
-
-
 
 
 

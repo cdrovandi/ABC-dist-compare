@@ -1,5 +1,5 @@
 function [theta, dist] = bayes_toad_abc_cvm(Y,simArgs,sumArgs,tol,M,cov_rw,prior,w)
-
+% ABC using CvM distance for toad example
 nan_pos = isnan(Y);
 
 ntoads = simArgs.ntoads;
@@ -13,7 +13,6 @@ y = summStat(Y,lag);
 theta = zeros(M,3);
 dist = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f([1.7 35 0.6]);
 dist_curr = tol;
 

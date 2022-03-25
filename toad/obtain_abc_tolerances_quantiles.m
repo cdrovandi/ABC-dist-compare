@@ -1,6 +1,6 @@
 
 
-
+% code to obtain hyperparameters of ABC discrepancy function based on summary statistics
 
 load('data_toads_model1.mat') % uncomment for simulated data
 %load('radio_converted.mat'); % uncomment for real data

@@ -1,5 +1,5 @@
 function [theta, dist] = bayes_toad_abc_wass_log(Y,simArgs,sumArgs,tol,M,cov_rw,prior,w)
-
+% ABC using Wass distance for toad example.  Log transform is applied to the data.
 nan_pos = isnan(Y);
 
 ntoads = simArgs.ntoads;
@@ -13,7 +13,6 @@ y = summStat(Y,lag);
 theta = zeros(M,3);
 dist = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f([1.7 35 0.6]);
 dist_curr = tol;
 
