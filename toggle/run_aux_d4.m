@@ -1,5 +1,7 @@
 function run_aux_d4
 
+% run abc with summary statistics for dataset 4
+
 load('d4.mat')
 
 n = length(y);

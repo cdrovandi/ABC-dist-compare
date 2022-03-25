@@ -1,5 +1,7 @@
 function run_aux_d3
 
+% run abc with summary statistics for dataset 3
+
 load('d3.mat')
 
 n = length(y);

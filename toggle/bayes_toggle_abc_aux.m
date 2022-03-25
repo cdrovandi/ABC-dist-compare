@@ -1,8 +1,5 @@
 function [theta, dist] = bayes_toggle_abc_aux(y,n,tol,M,cov_rw,prior,numComp,start,obj)
-
-
-%numComp = 3;
-%obj = gmdistribution.fit(y,numComp,'Replicates',1000,'Options',statset('MaxIter',100000,'TolFun',1e-10));
+% ABC using summary statistics
 
 theta_d = [obj.PComponents(1:(numComp-1)) obj.mu' reshape(obj.Sigma,numComp,1)'];
 
@@ -12,7 +9,6 @@ weight_matrix = inv(weight_matrix);
 theta = zeros(M,7);
 dist = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f(start);
 dist_curr = tol;
 

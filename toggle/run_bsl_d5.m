@@ -1,11 +1,11 @@
 function run_bsl_d5
 
+% run bsl with summary statistics for dataset 5
+
 load('d5.mat')
 
 n = length(y);
 
-%load('bsl_input_100.mat')
-%numComp = bsl_input_100(run,2);
 numComp = 3;
 
 m = 100;

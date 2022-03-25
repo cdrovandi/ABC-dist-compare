@@ -1,4 +1,6 @@
 
+% plot data and results for dataset 2
+
 %% plot raw data
 
 load('d2.mat')

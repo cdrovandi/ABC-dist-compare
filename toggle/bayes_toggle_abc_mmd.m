@@ -1,9 +1,9 @@
 function [theta, dist] = bayes_toggle_abc_mmd(y,n,tol,M,cov_rw,prior)
+% ABC using MMD distance
 
 theta = zeros(M,7);
 dist = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f([320 0.25 0.15 25 4 15 4]);
 dist_curr = tol;
 

@@ -1,5 +1,6 @@
 function run_wass_d5
 
+% run abc with Wass distance for dataset 5
 
 load('d5.mat')
 

@@ -1,5 +1,7 @@
 function y = simulate_tsw(theta)
-    T = 300; C = 2000;
+    % function that simulates toggle model
+	
+	T = 300; C = 2000;
     %T = 600; C = 8000;
 
     mu = theta(1); sigma = theta(2); gam = theta(3);

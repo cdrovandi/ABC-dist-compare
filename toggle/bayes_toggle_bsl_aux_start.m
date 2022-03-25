@@ -1,7 +1,6 @@
 function [theta, loglike] = bayes_toggle_bsl_aux_start(y,n,m,M,cov_rw,prior,numComp,start)
+% BSL using summary statistics
 
-
-%numComp = 3;
 obj = gmdistribution.fit(y,numComp,'Replicates',100,'Options',statset('MaxIter',100000,'TolFun',1e-10));
 
 theta_d = [obj.PComponents(1:(numComp-1)) obj.mu' reshape(obj.Sigma,numComp,1)'];
@@ -27,7 +26,6 @@ loglike_curr = -0.5*logdetA - 0.5*(ssy-the_mean)/the_cov*(ssy-the_mean)';
 theta = zeros(M,7);
 loglike = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f(start);
 
 for i = 1:M

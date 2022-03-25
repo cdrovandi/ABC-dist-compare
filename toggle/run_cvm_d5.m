@@ -1,5 +1,7 @@
 function run_cvm_d5
 
+% run abc with CvM distance for dataset 5
+
 load('d5.mat')
 
 n = length(y);

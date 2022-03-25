@@ -1,3 +1,6 @@
+
+% plot data and results for dataset 3
+
 %% plot raw data
 
 load('d3.mat')

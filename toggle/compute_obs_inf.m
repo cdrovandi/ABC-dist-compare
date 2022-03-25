@@ -1,6 +1,5 @@
-
 function W = compute_obs_inf(theta,y,obj,numComp)
-
+% compute observed information matrix that is used as weighting function in ABC discrepancy function for summary statistic approach   
 
 w = theta(1:(numComp-1));
 w(numComp) = 1-sum(theta(1:(numComp-1)));

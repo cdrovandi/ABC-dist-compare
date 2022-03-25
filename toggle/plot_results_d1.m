@@ -1,7 +1,9 @@
 
+% plot data and results for dataset 1
+
 %% plot raw data
 
-load('data_toggle.mat');
+load('d1.mat');
 
 figure;
 subaxis(1,2,1,'SpacingVert',0.005,'MR',0.05,'ML',0.03,'MT',0,'PT',0.05,'MB',0.09,'PB',0.04,'PL',0.02);
@@ -25,21 +27,21 @@ ylabel('ecdf','FontSize',16);
 
 
 %% results
-load('data_toggle.mat')
+load('d1.mat')
 
 true = [320 0.25 0.15 25 4 15 4];
 labels = {'\mu', '\sigma', '\gamma', '\alpha_u', '\beta_u', '\alpha_v', '\beta_v'};
 
-load('results_mcmc_cvm.mat')
+load('results_mcmc_cvm_d1.mat')
 theta_cvm = theta(1:1000:end,:);
 
-load('results_mcmc_wass.mat')
+load('results_mcmc_wass_d1.mat')
 theta_wass = theta(1:1000:end,:);
 
-load('results_mcmc_aux.mat')
+load('results_mcmc_aux_d1.mat')
 theta_aux = theta(1:1000:end,:);
 
-load('results_mcmc_bsl.mat')
+load('results_mcmc_bsl_d1.mat')
 theta_bsl = theta(1:10:end,:);
 
 xlower = [240 0.01 0 39 1.5 -10 -1];

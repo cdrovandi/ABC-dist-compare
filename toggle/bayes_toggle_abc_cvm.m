@@ -1,9 +1,9 @@
 function [theta, dist] = bayes_toggle_abc_cvm(y,n,tol,M,cov_rw,prior,start)
+% ABC using CvM distance
 
 theta = zeros(M,7);
 dist = zeros(M,1);
 
-% MH - IL
 theta_curr = prior.trans_f(start);
 dist_curr = tol;
 
