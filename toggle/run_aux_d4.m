@@ -40,7 +40,7 @@ prior.trans_f = @(theta) [log((theta - prior.p1)./(prior.p2 - theta))];
 prior.trans_finv = @(theta) [(prior.p2.*exp(theta) + prior.p1)./(1 + exp(theta))];
 
 tic;
-[theta,dist] = bayes_toggle_abc_aux(y,n,eps,1e7,cov_rw,prior,numComp,start);
+[theta,dist] = bayes_toggle_abc_aux(y,n,eps,1e7,cov_rw,prior,numComp,start,obj);
 finaltime=toc;
 
 save('results_mcmc_aux_d4.mat','theta','dist','eps');
